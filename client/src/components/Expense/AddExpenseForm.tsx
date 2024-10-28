@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../../context/AppContext";
+import { createExpense } from "../../utils/expense-utils";
 
 const AddExpenseForm = () => {
   // Exercise: Consume the AppContext here
@@ -13,8 +14,9 @@ const AddExpenseForm = () => {
     event.preventDefault();
 
     const expensesCopy = [...expenses];
-    expensesCopy.push({ id: String(expenses.length), name: name, cost: cost });
-
+    const newExpense = { id: String(expenses.length), description: name, cost: cost };
+    expensesCopy.push(newExpense);
+    createExpense(newExpense);
     setExpenses(expensesCopy);
   };
 
